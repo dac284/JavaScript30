@@ -62,12 +62,39 @@
       background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.82, 1.05, 0.29, 2.35);
     }
+
 
   </style>
 
   <script>
+  const secondHand = document.querySelector(".second-hand");
+  const minuteHand = document.querySelector(".min-hand");
+  const hourHand = document.querySelector(".hour-hand");
+  function setHands(){
+    const date = new Date();
+    const seconds = date.getSeconds() * 6 + 90;
+    const minutes = date.getMinutes() * 6 + 90;
+    const hours = date.getHours() * 30 + 90;
 
+    // at turnover the tranisition goes all the way ccw back to the beginning, so here is a simple aesthetic fix
+    
+    if (seconds == 90) {
+      secondHand.style.transition = 'all .005s';
+    } else if (seconds == 96) {
+      secondHand.style.transition = 'all .05s';
+    }
+
+    secondHand.style.transform = `rotate(${seconds}deg)`;
+    minuteHand.style.transform = `rotate(${minutes}deg)`;
+    hourHand.style.transform = `rotate(${hours}deg)`;
+    // console.log(date.getSeconds());
+  }
+
+  setInterval(setHands,1000);
 
   </script>
 </body>
