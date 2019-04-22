@@ -95,7 +95,44 @@
     </div>
   </div>
 
-<script>
+<script> 
+
+// get all the checkbox elements
+const items = document.querySelectorAll('.inbox input[type="checkbox"]');
+
+// variable to keep track of the last box checked
+let lastChecked;
+
+function selectMultipleItems(e) {
+
+  // Flag variable to know which items are in between checked ones
+
+  let inBetween = false;
+
+  // Check for shift press
+  // Check that are checking (not unchecking)
+  
+  if (e.shiftKey && this.checked) {
+
+    // loop over the checkboxes
+
+    items.forEach(item => {
+      if (item === this || item === lastChecked) {
+        inBetween = !inBetween;
+      }
+
+      if (inBetween) {
+        item.checked = true;
+      }
+    });
+  }
+
+  lastChecked = this;
+
+}
+
+items.forEach(item => item.addEventListener('click',selectMultipleItems));
+
 </script>
 </body>
 </html>
