@@ -8,16 +8,16 @@
 
   <script>
     // start with strings, numbers and booleans
-    // let age = 100;
-    // let age2 = age;
-    // console.log(age, age2);
-    // age = 200;
-    // console.log(age, age2);
+    let age = 100;
+    let age2 = age;
+    console.log(age, age2);
+    age = 200;
+    console.log(age, age2);
 
-    // let name = 'Wes';
-    // let name2 = name;
+    let name = 'Wes';
+    let name2 = name;
     // console.log(name, name2);
-    // name = 'wesley';
+    name = 'wesley';
     // console.log(name, name2);
 
     // Let's say we have an array
@@ -26,7 +26,7 @@
     // and we want to make a copy of it.
     const team = players;
 
-    console.log(players, team);
+    // console.log(players, team);
     // You might think we can just do something like this:
     // team[3] = 'Lux';
 
@@ -40,6 +40,8 @@
 
     // So, how do we fix this? We take a copy instead!
     const team2 = players.slice();
+    team2[3] = 'Lux';
+    console.log(players);
 
     // one way
 
@@ -49,7 +51,7 @@
     // or use the new ES6 Spread
     const team4 = [...players];
     team4[3] = 'heeee hawww';
-    console.log(team4);
+    // console.log(team4);
 
     const team5 = Array.from(players);
 
@@ -69,7 +71,7 @@
 
     // how do we take a copy instead?
     const cap2 = Object.assign({}, person, { number: 99, age: 12 });
-    console.log(cap2);
+    // console.log(cap2);
 
     // We will hopefully soon see the object ...spread
     // const cap3 = {...person};
@@ -85,12 +87,14 @@
       }
     };
 
-    console.clear();
-    console.log(wes);
+    // console.clear();
+    // console.log(wes);
 
     const dev = Object.assign({}, wes);
 
-    const dev2 = JSON.parse(JSON.stringify(wes));
+    //need to look up a deep clone function if desired
+
+    const dev2 = JSON.parse(JSON.stringify(wes)); //probably poor performance deep clone
 
 
   </script>
