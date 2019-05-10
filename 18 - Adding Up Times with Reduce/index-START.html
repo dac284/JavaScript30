@@ -181,7 +181,46 @@
       Video 58
     </li>
   </ul>
+
 <script>
+
+const timeNodes = [...document.querySelectorAll('[data-time]')];
+
+/* Here is Wes's solution with map and reduce functions
+    Perhaps more readable and splits out each step
+
+  const seconds = timeNodes
+      .map( node => node.dataset.time)
+      .map(timeCode => {
+          const [mins, secs] = timeCode.split(':').map(parseFloat);
+          return mins * 60 + secs;
+      })
+      .reduce((acc, val) => acc + val);
+*/
+
+//Alternative solution with one reduce step - requires initializing total with 0 to work
+
+const seconds = timeNodes
+  .reduce((total, node) => {
+    const mins = parseFloat(node.dataset.time.split(':')[0]);
+    const secs = parseFloat(node.dataset.time.split(':')[1]);
+    return total + mins*60 + secs;
+  }, 0);
+
+
+
+let secondsLeft = seconds;
+
+const hours = Math.floor(secondsLeft / 3600);
+secondsLeft = secondsLeft % 3600;
+
+const minutes = Math.floor(secondsLeft / 60);
+secondsLeft = secondsLeft % 60;
+
+console.log('%f:%f:%f', hours, minutes, secondsLeft);
+
+
+
 </script>
 </body>
 </html>
