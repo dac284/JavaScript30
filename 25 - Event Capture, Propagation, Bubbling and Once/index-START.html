@@ -43,6 +43,30 @@
 <button></button>
 <script>
 
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
+  function logText(e) {
+    console.log(this.classList.value);
+    // stopProp will prevent 'bubbling', will only trigger one event
+    // e.stopPropagation();
+  }
+
+
+  // captue option object:
+  //  set to true to run the listener function on the way down the capture list 
+  //  defualt is false, will run on bubble up
+  divs.forEach(div => div.addEventListener('click', logText, {
+      capture: false,
+      once: true // listens once then unbinds from that element
+    }));
+
+  // this prevents a button from being clicked more than once
+  button.addEventListener('click', () => {
+    console.log('Click!!');
+  }, {
+    once: true
+  });
+
 </script>
 </body>
 </html>
